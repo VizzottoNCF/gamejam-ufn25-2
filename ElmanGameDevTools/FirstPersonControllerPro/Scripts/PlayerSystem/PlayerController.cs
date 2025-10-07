@@ -156,10 +156,10 @@ namespace ElmanGameDevTools.PlayerSystem
             controller.Move(move * currentSpeed * Time.deltaTime);
 
             // Handle jumping
-            if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+            //if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching)
+            //{
+            //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            //}
 
             // Apply gravity
             velocity.y += gravity * Time.deltaTime;
@@ -221,7 +221,7 @@ namespace ElmanGameDevTools.PlayerSystem
                 if (Time.time - lastStandCheckTime > standCheckCooldown)
                 {
                     lastStandCheckTime = Time.time;
-
+                    
                     if (CanStandUp())
                     {
                         isCrouching = false;
