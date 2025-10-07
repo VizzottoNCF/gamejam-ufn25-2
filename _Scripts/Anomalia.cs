@@ -4,10 +4,10 @@ public abstract class Anomalia : MonoBehaviour
 {
     public enum SalaAnomalia
     {
-        S1, 
-        S2, 
-        S3, 
-        S4
+        Gerador, 
+        Armazem, 
+        Cameras,
+        Cela
     }
 
     [Header("Anomaly Info")]
