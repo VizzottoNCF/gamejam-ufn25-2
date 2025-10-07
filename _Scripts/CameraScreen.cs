@@ -26,18 +26,11 @@ public class CameraScreen : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchCamera(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            SwitchCamera(1);
-        }
+        
     }
 
     private void Start()
     {
-        SwitchCamera(0);
+        if (cameraList.Count > 0) { SwitchCamera(0); }
     }
 }

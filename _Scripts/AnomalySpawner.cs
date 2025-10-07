@@ -3,73 +3,120 @@ using UnityEngine;
 
 public class AnomalySpawner : MonoBehaviour
 {
-    [Header("Debug")]
-    [SerializeField] bool anomalia_ligada = false;
-    [SerializeField] int numero = 0;
-    [SerializeField] int numero_1 = 0;
+    public static AnomalySpawner Instance;
+    [Header("Salas")]
+    [SerializeField] private List<GameObject> Salas; // layout padrão
+
+    [Header("Salas Instanciada")]
+    [SerializeField] private List<GameObject> SalasInstanciadas; // layouts instanciados
 
     [Header("Anomalias")]
-    [SerializeField] private List<GameObject> Layout_Sala1;
-    [SerializeField] private List<GameObject> Layout_Sala2;
-    [SerializeField] private List<GameObject> Layout_Sala3;
-    [SerializeField] private List<GameObject> Layout_Sala4;
+    [SerializeField] private List<GameObject> AnomaliaPrefabs;
+    [SerializeField] private List<GameObject> AnomaliasInstanciadas;
 
-    [Header("Anomalia Instanciada")]
-    private GameObject Sala1_Instancia = null;
-    private GameObject Sala2_Instancia = null;
-    private GameObject Sala3_Instancia = null;
-    private GameObject Sala4_Instancia = null;
+    private void Awake()
+    {
+        // singleton
+        if (Instance == null) { Instance = this.GetComponent<AnomalySpawner>(); }
+        else { Destroy(gameObject); }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < Salas.Count; i++)
+        {
+            SalasInstanciadas.Add(Salas[i]);
+            SalasInstanciadas[i] = Instantiate(SalasInstanciadas[i]);
+        }
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-            numero = Random.Range(0, 3);
-            anomalia_ligada = true;
-            ChangeRoom1(numero);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-
-            numero = Random.Range(0, 3);
-            anomalia_ligada = true;
-            ChangeRoom2(numero);
-
-        }
-        //  else if(Input.GetKeyDown(KeyCode.J)){
-
+        
 
     }
 
+    #region Spawner de Anomalia
+    public void SelectRandomAnomaly()
+    {
+        
+
+        int _totalWeight = 0;
+        foreach (var anom in AnomaliaPrefabs)
+        {
+            bool shares = false;
+            Anomalia a = anom.GetComponent<Anomalia>();
+
+            // removes any anomaly that shares a room from the weight
+            for (int i = 0; i < AnomaliasInstanciadas.Count; i++)
+            {
+                if (AnomaliasInstanciadas[i].GetComponent<Anomalia>().SalaInstancia == a.SalaInstancia)
+                {
+                    shares = true;
+                    continue;
+                }
+            }
+            if (shares) { continue; }
+            _totalWeight += a.Weight;
+        }
+
+        int _randomValue = Random.Range(0, _totalWeight);
+        int _cumulative = 0;
+        foreach (var anomaly in AnomaliaPrefabs)
+        {
+            bool shares = false;
+            Anomalia a = anomaly.GetComponent<Anomalia>();
+
+            // removes any anomaly that shares a room from the weight
+            for (int i = 0; i < AnomaliasInstanciadas.Count; i++)
+            {
+                if (AnomaliasInstanciadas[i].GetComponent<Anomalia>().SalaInstancia == a.SalaInstancia)
+                {
+                    shares = true;
+                    continue;
+                }
+            }
+            if (shares) { continue; }
+            _cumulative += a.Weight;
+            if (_randomValue < _cumulative)
+            {
+                anomaly.GetComponent<Anomalia>().Ativar();
+                break;
+            }
+        }
+    }
+    #endregion
 
 
+    #region Instanciamento de Anomalia
+    /// <summary>
+    /// Activates an anomaly
+    /// </summary>
+    /// <param name="sala">Qual sala vai acontecer</param>
+    /// <param name="anomalia">prefab da anomalia</param>
+    public void ActivateAnomaly(int sala, GameObject anomalia)
+    {
+        // clears base layout
+        GameObject basePrefab = SalasInstanciadas[sala];
+        Destroy(basePrefab);
+
+        // fills in the room with anomaly prefab
+        SalasInstanciadas[sala] = Instantiate(anomalia);
+        AnomaliasInstanciadas.Add(anomalia);
+    }
 
     /// <summary>
-    ///  SPAWNER
+    /// Deactivates an anomaly
     /// </summary>
-    /// <param name="num"></param>
-    /// algoritmo para saber quando tem anomalia e quantas
-    /// se for p ter anomalia em X sala
-    /// rand num = algum entre 1 e Layout_Sala1.Count ---> anomalia selecionado
-    /// chama ChangeRoom1(rand num)
-
-
-    public void ChangeRoom1(int numero)
+    /// <param name="sala">Qual sala vai retornar ao padrão</param>
+    public void DeactivateAnomaly(int sala)
     {
-        // limpa a versão instanciada
-        if (Sala1_Instancia != null) { Destroy(Sala1_Instancia); }
+        // clear anomaly
+        GameObject anomalyPrefab = SalasInstanciadas[sala];
+        AnomaliasInstanciadas.Remove(anomalyPrefab);
 
-        // instancia nova versão
-        Sala1_Instancia = Instantiate(Layout_Sala1[numero]);
+        // fill in room with base layout
+        SalasInstanciadas[sala] = Instantiate(Salas[sala]);
     }
-    public void ChangeRoom2(int numero)
-    {
-        // limpa a versão instanciada
-        if (Sala2_Instancia != null) { Destroy(Sala2_Instancia); }
-
-        // instancia nova versão
-        Sala2_Instancia = Instantiate(Layout_Sala2[numero]);
-    }
+    #endregion
 }
