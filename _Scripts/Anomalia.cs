@@ -13,7 +13,6 @@ public abstract class Anomalia : MonoBehaviour
     [Header("Anomaly Info")]
     public GameObject AnomPrefab;
     public string Name;
-    public string Desc;
     public int Weight = 1; // peso default
     public SalaAnomalia SalaInstancia;
 
@@ -21,9 +20,6 @@ public abstract class Anomalia : MonoBehaviour
     {
         AnomalySpawner.Instance.ActivateAnomaly((int)SalaInstancia, AnomPrefab);
     }
-
-    
-    public abstract void Desativar();
 }
 
 
