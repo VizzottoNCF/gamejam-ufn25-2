@@ -37,7 +37,7 @@ public class MenuPrincipalManager : MonoBehaviour
         SceneManager.LoadScene(nomeDoLevelDoJogo);
 
     }
-
+  //seta o volume
     public void SetVolume()
     {
         float volume = Volume_slider.value;
