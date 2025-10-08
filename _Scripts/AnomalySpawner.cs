@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class AnomalySpawner : MonoBehaviour
@@ -13,7 +16,13 @@ public class AnomalySpawner : MonoBehaviour
     [Header("Anomalias")]
     [SerializeField] private List<GameObject> AnomaliaPrefabs;
     [SerializeField] private List<GameObject> AnomaliasInstanciadas;
+    [SerializeField] TextMeshProUGUI TimerText;
 
+
+
+
+    [SerializeField] bool call_anomaly = false;
+    [SerializeField] int call_anomaly2 = 0;
     private void Awake()
     {
         // singleton
@@ -32,14 +41,31 @@ public class AnomalySpawner : MonoBehaviour
 
     void Update()
     {
+
         
+        if (call_anomaly == false)
+        {
+            call_anomaly = true;
+            StartCoroutine (Call_new_Anomalia());
+            call_anomaly2 +=1;
+
+
+        }
+
+
+        /// quando que eu preciso chamar o spawner?
+        /// timer + velocidade muda quando ja tem uma instancia? + 0 intancia = 5 seg p anomalia?
+
+
+
+
 
     }
 
     #region Spawner de Anomalia
     public void SelectRandomAnomaly()
     {
-        
+        call_anomaly = false;
 
         int _totalWeight = 0;
         foreach (var anom in AnomaliaPrefabs)
@@ -119,4 +145,14 @@ public class AnomalySpawner : MonoBehaviour
         SalasInstanciadas[sala] = Instantiate(Salas[sala]);
     }
     #endregion
+
+
+    IEnumerator Call_new_Anomalia()
+    {
+
+        yield return new WaitForSeconds(40);
+        call_anomaly = false;
+        SelectRandomAnomaly();
+       
+    }
 }
