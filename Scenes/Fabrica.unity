@@ -4796,6 +4796,9 @@ MonoBehaviour:
   SalasInstanciadas: []
   AnomaliaPrefabs: []
   AnomaliasInstanciadas: []
+  TimerText: {fileID: 0}
+  call_anomaly: 0
+  call_anomaly2: 0
 --- !u!4 &1281034034
 Transform:
   m_ObjectHideFlags: 0
