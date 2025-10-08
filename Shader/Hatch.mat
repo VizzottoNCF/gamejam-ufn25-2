@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FactoryHatch
+  m_Name: Hatch
   m_Shader: {fileID: -6465566751694194690, guid: e8ddbd5f716c5a047884c14a6881e140, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 96747c193717fa74cbc6dfd9a64bc185, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_21d2df5565154167a1c54ba487ba2b06_Texture_1_Texture2D:
@@ -50,10 +50,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_480ec3934e0d444ba35ecf13bacd8eea_Texture_1_Texture2D:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Triplanar_426a02e17f6443e88e1f5d53ac0e80bb_Texture_1_Texture2D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -76,11 +72,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Blend: 1
-    - _DrawingStrenght: 0.47
-    - _Opacity: 0.3
+    - _DrawingStrenght: 0.35
+    - _Opacity: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmudgeStrenght: 0.63
+    - _SmudgeStrenght: 0.12
     - _Speed: 2.5
     - _TriplanarTile: 1
     m_Colors:

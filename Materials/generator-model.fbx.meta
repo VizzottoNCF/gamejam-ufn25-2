@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59ed1391e483f8c40ac68bbd283f20b5
+guid: 998f9cf0e8c8c6e4b9b3d110eb7cbb63
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,53 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Black_handle
-    second: {fileID: 2100000, guid: 5ade342bac451544f93e63b0c4eb1ce5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Black_metal
-    second: {fileID: 2100000, guid: 7b8ce435c54f72d479223950f2ec69e1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CAT_logo
-    second: {fileID: 2100000, guid: cab8368b1916aed4cbaa9540006f938f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: c158cd10402f41b44bc6023bdaa6c1e4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LED_green
-    second: {fileID: 2100000, guid: d5e37dfc22b763943935cff2a16368c3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LED_red
-    second: {fileID: 2100000, guid: db474c3e37943534dae4bbc58e3836bc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Main
-    second: {fileID: 2100000, guid: 0e0430fa4eae0ba49950d709a09d3317, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Main door
-    second: {fileID: 2100000, guid: 96a78bbdb92d7754e85863c78a3a8581, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Main door.001
-    second: {fileID: 2100000, guid: 28eec01c06b71ce47aae909f9b5696f7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digital-sub-meter-500x500
-    second: {fileID: 2100000, guid: cbb455e563a42d847bb8f0aa6c932d9a, type: 2}
+      name: generator-material
+    second: {fileID: 2100000, guid: 80dbb0e6de4aaa24c9023a38423ef1e6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
