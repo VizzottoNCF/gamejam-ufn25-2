@@ -64,7 +64,7 @@ namespace ElmanGameDevTools.PlayerSystem
         private bool markerInitialized = false;
         private float lastStandCheckTime = 0f;
 
-        private static bool morto = false;
+        [SerializeField] private static bool morto = false;
         // Input and camera control variables
         private bool isCrouchKeyHeld = false;
         private float cameraBaseHeight;
@@ -425,8 +425,8 @@ namespace ElmanGameDevTools.PlayerSystem
             morto = true;
             runSpeed = 0;
             speed = 0;
-           Camera.main.transform.LookAt(killer, Vector3.up*260);
-
+          // Camera.main.transform.LookAt(killer, Vector3.up*260);
+            Camera.main.transform.LookAt(killer);
         }
     }
 }
