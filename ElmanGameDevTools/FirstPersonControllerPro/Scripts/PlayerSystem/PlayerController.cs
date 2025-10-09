@@ -11,7 +11,6 @@ namespace ElmanGameDevTools.PlayerSystem
         [Header("References")]
         public CharacterController controller;
         public Transform playerCamera;
-        [SerializeField] public Transform killer;
         [SerializeField] public Transform config;
         [Header("Movement Settings")]
         public static float speed = 6f;
