@@ -18,7 +18,7 @@ public class MenuPrincipalManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Master_Sound"))
+        if (PlayerPrefs.HasKey("Master_Sound")) 
         {
 
             LoadVolume();
@@ -28,6 +28,8 @@ public class MenuPrincipalManager : MonoBehaviour
         else
         {
             SetVolume();
+            SetMusic();
+            SetSound();
 
         }
     }
@@ -45,20 +47,32 @@ public class MenuPrincipalManager : MonoBehaviour
         float volume = Volume_slider.value;
         mymixer.SetFloat("Master_Sound", Mathf.Log10(volume)*20);
         PlayerPrefs.SetFloat("Master_Sound", volume);
+        
+    }
+    public void SetMusic()
+    {
+        
         float Music = Music_slider.value;
-        mymixer.SetFloat("Music", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("Music", volume);
+        mymixer.SetFloat("Music", Mathf.Log10(Music) * 20);
+        PlayerPrefs.SetFloat("Music", Music);
+      
+    }
+    public void SetSound()
+    {
+
         float Sounds = Sounds_slider.value;
-        mymixer.SetFloat("Sounds", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("Sounds", volume);
+        mymixer.SetFloat("Sounds", Mathf.Log10(Sounds) * 20);
+        PlayerPrefs.SetFloat("Sounds", Sounds);
     }
     private void LoadVolume()
     {
-        Volume_slider.value = PlayerPrefs.GetFloat("Master_Soud");
+        Volume_slider.value = PlayerPrefs.GetFloat("Master_Sound");
         Music_slider.value = PlayerPrefs.GetFloat("Music");
         Sounds_slider.value = PlayerPrefs.GetFloat("Sounds");
         
         SetVolume();
+        SetMusic();
+        SetSound();
     }
 
     public void AbriConfig()
