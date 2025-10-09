@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using ElmanGameDevTools.PlayerSystem;
+using UnityEngine;
 
 public class get_conf : MonoBehaviour
 {
     public GameObject setting;
     public static bool issettingactive;
+    [SerializeField] GameObject morte_menu;
 
     void Update()
     {
@@ -18,6 +20,14 @@ public class get_conf : MonoBehaviour
             {
                 Resume();
             }
+        }
+
+        if(PlayerController.morto == true)
+        {
+
+            morte_menu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            issettingactive = true;
         }
     }
 

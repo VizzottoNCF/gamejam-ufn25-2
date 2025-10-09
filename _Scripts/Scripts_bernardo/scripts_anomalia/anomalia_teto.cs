@@ -8,15 +8,16 @@ using UnityEngine.AI;
 public class anomalia_teto : MonoBehaviour
 {
     [SerializeField] private static Collider colliderkill;
-    public static Transform killer;
+    public Transform killer;
     [SerializeField]  GameObject anomalia;
-    private float spd = 0;
     [SerializeField]  GameObject player;
+    [SerializeField] private Collider colliderdmg;
+    [SerializeField] GameObject morte_menu;
+
     //Transform anomalia;
-    NavMeshAgent anomalya;
     bool ataca = false;
-   private static Rigidbody rb;
-    float speed = 15f;
+    private static Rigidbody rb;
+    float speed = 10f;
     // Update is called once per frame
 
     private void Start()
@@ -34,8 +35,11 @@ public class anomalia_teto : MonoBehaviour
 
             // new WaitForSeconds(1);
             // rb.MovePosition(transform.position*40);
+            
             anomalia.transform.position = Vector3.MoveTowards(anomalia.transform.position,  player.transform.position, speed * Time.deltaTime);
 
+            new WaitForSeconds(2);
+            morte_menu.SetActive(true);
 
         }
 
@@ -60,14 +64,20 @@ public class anomalia_teto : MonoBehaviour
             // killer.transform.position = player.transform.position;
 
             //anomalia.transform.position = Vector3.MoveTowards(player.transform.position, anomalia.transform.position, speed  * Time.deltaTime);
-
+           // morte_menu.SetActive(true);
         }
 
 
     }
+    
+    
+      
 
-   
 
-  
+
+    
+
+
+
 
 }

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -15,26 +14,49 @@ public class MenuPrincipalManager : MonoBehaviour
     [SerializeField] private Slider Volume_slider;
     [SerializeField] private Slider Music_slider;
     [SerializeField] private Slider Sounds_slider;
-
+    [SerializeField] private Slider slider_sensi;
+    public static float mouseSensitivity = 100f;
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Master_Sound")) 
-        {
+       
+        mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
+        slider_sensi.value = mouseSensitivity;
+        Cursor.lockState = CursorLockMode.Locked;
 
-            LoadVolume();
+
+        LoadAll();
+        //if (PlayerPrefs.HasKey("Master_Sound")) 
+        //{
+
+        //    LoadVolume();
 
 
-        }
-        else
-        {
-            SetVolume();
-            SetMusic();
-            SetSound();
+        //}
+        //else
+        //{
+        //    SetVolume();
+        //    SetMusic();
+        //    SetSound();
 
-        }
+        //}
     }
 
 
+    public void LoadAll()
+    {
+        Volume_slider.value = PlayerPrefs.GetFloat("Master_Sound");
+        Music_slider.value = PlayerPrefs.GetFloat("Music");
+        Sounds_slider.value = PlayerPrefs.GetFloat("Sounds");
+        slider_sensi.value = PlayerPrefs.GetFloat("currentSensitivity");
+    }
+
+    public void SaveAll()
+    {
+        PlayerPrefs.SetFloat("Master_Sound", Volume_slider.value);
+        PlayerPrefs.SetFloat("Music", Music_slider.value);
+        PlayerPrefs.SetFloat("Sounds", Sounds_slider.value);
+        PlayerPrefs.SetFloat("currentSensitivity", slider_sensi.value);
+    }
     public void jogar()
     {
 
@@ -115,4 +137,11 @@ public class MenuPrincipalManager : MonoBehaviour
         Application.Quit();
 
     }
+    public void AdjustSpeed(float newSpeed)
+    {
+        mouseSensitivity = newSpeed * 10;
+    }
+
+    
+
 }

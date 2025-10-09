@@ -11,14 +11,16 @@ namespace ElmanGameDevTools.PlayerSystem
         [Header("References")]
         public CharacterController controller;
         public Transform playerCamera;
-        [SerializeField] public  Transform killer;
+        [SerializeField] public Transform killer;
         [SerializeField] public Transform config;
         [Header("Movement Settings")]
         public static float speed = 6f;
         public static float runSpeed = 9f;
         public float jumpHeight = 1f;
         public float gravity = -9.81f;
-        public float mouseSensitivity = 100f;
+        //public float mouseSensitivity = 100f;
+        float sensivel = MenuPrincipalManager.mouseSensitivity;
+        public static bool lock1 = false;
 
         [Header("Key Bindings")]
         public KeyCode defaultRunKey = KeyCode.LeftShift;
@@ -64,7 +66,7 @@ namespace ElmanGameDevTools.PlayerSystem
         private bool markerInitialized = false;
         private float lastStandCheckTime = 0f;
 
-        [SerializeField] private static bool morto = false;
+        [SerializeField] public static bool morto = false;
         // Input and camera control variables
         private bool isCrouchKeyHeld = false;
         private float cameraBaseHeight;
@@ -111,7 +113,7 @@ namespace ElmanGameDevTools.PlayerSystem
         void Update()
         {
             GetComponent<get_conf>();
-            if (get_conf.issettingactive == false)
+            if (get_conf.issettingactive == false && morto == false)
             {
                 HandleGroundCheck();
                 HandleCrouching();
@@ -124,11 +126,11 @@ namespace ElmanGameDevTools.PlayerSystem
             {
                 HandleHeadBob();
             }
-          //  if (morto == true)
-           // {
-             //   GetComponent<mouse_look>();
-             //   Morte_de_Cima();
-           // }
+            //  if (morto == true)
+            // {
+            //   GetComponent<mouse_look>();
+            //   Morte_de_Cima();
+            // }
         }
 
         /// <summary>
@@ -301,16 +303,15 @@ namespace ElmanGameDevTools.PlayerSystem
         {
 
 
-            if (morto == false)
-            {
-                PlayerPrefs.SetFloat("currentSensitivity", mouseSensitivity);
-                float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-                transform.Rotate(0f, mouseX, 0f);
-                float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-                xRotation -= mouseY;
-                xRotation = Mathf.Clamp(xRotation, maxLookDownAngle, maxLookUpAngle);
-                playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            }
+
+            PlayerPrefs.SetFloat("currentSensitivity", sensivel);
+            float mouseX = Input.GetAxis("Mouse X") * sensivel * Time.deltaTime;
+            transform.Rotate(0f, mouseX, 0f);
+            float mouseY = Input.GetAxis("Mouse Y") * sensivel * Time.deltaTime;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, maxLookDownAngle, maxLookUpAngle);
+            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
 
         }
 
@@ -417,16 +418,23 @@ namespace ElmanGameDevTools.PlayerSystem
                 Gizmos.DrawWireSphere(standingHeightMarker.transform.position, 0.05f);
             }
         }
-        
-          
+
+
 
         public static void morreu(Transform killer)
         {
-            morto = true;
-            runSpeed = 0;
-            speed = 0;
-          // Camera.main.transform.LookAt(killer, Vector3.up*260);
-            Camera.main.transform.LookAt(killer);
+             morto = true;
+             runSpeed = 0;
+             speed = 0;
+            //Camera.main.transform.LookAt(killer, Vector3.up*260);
+            if (lock1 == false) {
+                    Camera.main.transform.LookAt(killer);
+                lock1 = true;
+                }
         }
+    
+
+     
+
     }
 }
