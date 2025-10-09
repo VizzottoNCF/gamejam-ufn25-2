@@ -20,6 +20,11 @@ public abstract class Anomalia : MonoBehaviour
     {
         AnomalySpawner.Instance.ActivateAnomaly((int)SalaInstancia, AnomPrefab);
     }
+
+    public virtual void Desativar()
+    {
+        AnomalySpawner.Instance.DeactivateAnomaly((int)SalaInstancia);
+    }
 }
 
 
