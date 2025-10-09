@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace ElmanGameDevTools.PlayerSystem
@@ -10,13 +11,14 @@ namespace ElmanGameDevTools.PlayerSystem
         [Header("References")]
         public CharacterController controller;
         public Transform playerCamera;
-
+        [SerializeField] public  Transform killer;
+        [SerializeField] public Transform config;
         [Header("Movement Settings")]
-        public float speed = 6f;
-        public float runSpeed = 9f;
+        public static float speed = 6f;
+        public static float runSpeed = 9f;
         public float jumpHeight = 1f;
         public float gravity = -9.81f;
-        public float sensitivity = 2f;
+        public float mouseSensitivity = 100f;
 
         [Header("Key Bindings")]
         public KeyCode defaultRunKey = KeyCode.LeftShift;
@@ -62,6 +64,7 @@ namespace ElmanGameDevTools.PlayerSystem
         private bool markerInitialized = false;
         private float lastStandCheckTime = 0f;
 
+        private static bool morto = false;
         // Input and camera control variables
         private bool isCrouchKeyHeld = false;
         private float cameraBaseHeight;
@@ -107,16 +110,25 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         void Update()
         {
-            HandleGroundCheck();
-            HandleCrouching();
-            HandleMovement();
-            HandleControllerHeightAdjustment();
-            HandleCameraControl();
+            GetComponent<get_conf>();
+            if (get_conf.issettingactive == false)
+            {
+                HandleGroundCheck();
+                HandleCrouching();
+                HandleMovement();
+                HandleControllerHeightAdjustment();
+                HandleCameraControl();
+            }
 
             if (enableHeadBob)
             {
                 HandleHeadBob();
             }
+          //  if (morto == true)
+           // {
+             //   GetComponent<mouse_look>();
+             //   Morte_de_Cima();
+           // }
         }
 
         /// <summary>
@@ -221,7 +233,7 @@ namespace ElmanGameDevTools.PlayerSystem
                 if (Time.time - lastStandCheckTime > standCheckCooldown)
                 {
                     lastStandCheckTime = Time.time;
-                    
+
                     if (CanStandUp())
                     {
                         isCrouching = false;
@@ -287,13 +299,19 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         private void HandleCameraControl()
         {
-            float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-            transform.Rotate(0f, mouseX, 0f);
 
-            float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, maxLookDownAngle, maxLookUpAngle);
-            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            if (morto == false)
+            {
+                PlayerPrefs.SetFloat("currentSensitivity", mouseSensitivity);
+                float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+                transform.Rotate(0f, mouseX, 0f);
+                float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+                xRotation -= mouseY;
+                xRotation = Mathf.Clamp(xRotation, maxLookDownAngle, maxLookUpAngle);
+                playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            }
+
         }
 
         /// <summary>
@@ -301,35 +319,38 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         private void HandleHeadBob()
         {
-            if (!isGrounded) return;
-
-            float moveX = Input.GetAxis("Horizontal");
-            float moveZ = Input.GetAxis("Vertical");
-
-            // Recalculate base height for head bobbing
-            float heightRatio = controller.height / originalHeight;
-            float currentBaseHeight = cameraBaseHeight * heightRatio;
-
-            if (Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f)
+            if (morto == false)
             {
-                bool isRunning = Input.GetKey(currentRunKey) && !isCrouching && moveZ > 0.1f;
-                timer += Time.deltaTime * (isRunning ? runBobSpeed : walkBobSpeed);
-                float bobAmount = isRunning ? runBobAmount : walkBobAmount;
+                if (!isGrounded) return;
 
-                playerCamera.localPosition = new Vector3(
-                    playerCamera.localPosition.x,
-                    currentBaseHeight + Mathf.Sin(timer) * bobAmount,
-                    playerCamera.localPosition.z
-                );
-            }
-            else
-            {
-                timer = 0;
-                playerCamera.localPosition = new Vector3(
-                    playerCamera.localPosition.x,
-                    Mathf.Lerp(playerCamera.localPosition.y, currentBaseHeight, Time.deltaTime * 8f),
-                    playerCamera.localPosition.z
-                );
+                float moveX = Input.GetAxis("Horizontal");
+                float moveZ = Input.GetAxis("Vertical");
+
+                // Recalculate base height for head bobbing
+                float heightRatio = controller.height / originalHeight;
+                float currentBaseHeight = cameraBaseHeight * heightRatio;
+
+                if (Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f)
+                {
+                    bool isRunning = Input.GetKey(currentRunKey) && !isCrouching && moveZ > 0.1f;
+                    timer += Time.deltaTime * (isRunning ? runBobSpeed : walkBobSpeed);
+                    float bobAmount = isRunning ? runBobAmount : walkBobAmount;
+
+                    playerCamera.localPosition = new Vector3(
+                        playerCamera.localPosition.x,
+                        currentBaseHeight + Mathf.Sin(timer) * bobAmount,
+                        playerCamera.localPosition.z
+                    );
+                }
+                else
+                {
+                    timer = 0;
+                    playerCamera.localPosition = new Vector3(
+                        playerCamera.localPosition.x,
+                        Mathf.Lerp(playerCamera.localPosition.y, currentBaseHeight, Time.deltaTime * 8f),
+                        playerCamera.localPosition.z
+                    );
+                }
             }
         }
 
@@ -395,6 +416,17 @@ namespace ElmanGameDevTools.PlayerSystem
                 Gizmos.color = Color.cyan;
                 Gizmos.DrawWireSphere(standingHeightMarker.transform.position, 0.05f);
             }
+        }
+        
+          
+
+        public static void morreu(Transform killer)
+        {
+            morto = true;
+            runSpeed = 0;
+            speed = 0;
+           Camera.main.transform.LookAt(killer, Vector3.up*260);
+
         }
     }
 }
