@@ -1,5 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEditor.ShaderData;
 
 namespace ElmanGameDevTools.PlayerSystem
 {
@@ -73,11 +75,22 @@ namespace ElmanGameDevTools.PlayerSystem
         private float cameraBaseHeight;
         private Vector3 cameraOriginalLocalPos;
 
+        
+        
+
+
+        
+    
         /// <summary>
         /// Initializes the player controller and sets up initial state
         /// </summary>
+        /// 
         void Start()
         {
+
+          
+           
+
             morto = false;
             speed = defaultSpeed;
             runSpeed = defaultRunSpeed;
@@ -118,6 +131,15 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         void Update()
         {
+            // if (andando == false) { 
+            //  audioSource.Stop();
+            //  }
+
+           
+
+            
+            
+
             GetComponent<get_conf>();
             if (get_conf.issettingactive == false && morto == false)
             {
@@ -137,6 +159,8 @@ namespace ElmanGameDevTools.PlayerSystem
             //   GetComponent<mouse_look>();
             //   Morte_de_Cima();
             // }
+            
+            
         }
 
         /// <summary>
@@ -157,6 +181,10 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         private void HandleMovement()
         {
+            
+           
+
+           // andando = true;
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
 
@@ -175,6 +203,8 @@ namespace ElmanGameDevTools.PlayerSystem
 
             controller.Move(move * currentSpeed * Time.deltaTime);
 
+
+            
             // Handle jumping
             //if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching)
             //{
@@ -184,7 +214,11 @@ namespace ElmanGameDevTools.PlayerSystem
             // Apply gravity
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+
+            
         }
+
+
 
         /// <summary>
         /// Updates the standing height marker position to follow the player
