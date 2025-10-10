@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraAnomaly : MonoBehaviour
 {
+    [Header("Canvas Variables")]
+    [SerializeField] private Image blackout;
 
     [Header("Camera Config")]
     [SerializeField] private bool CanTakePhoto = true;
@@ -18,26 +20,50 @@ public class CameraAnomaly : MonoBehaviour
     [Header("Safezones")]
     [SerializeField] private List<Transform> SafeZone;
 
+    private void Update()
+    {
+        if (CanTakePhoto && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            TakePhoto();
+        }
+
+        if (!CanTakePhoto && Cooldown < CooldownDefault) { Cooldown += Time.deltaTime; }
+        else { Cooldown = 0f; CanTakePhoto = true; }
+    }
+
+
     public void TakePhoto()
     {
+        print("FOTOU!");
+        CanTakePhoto = false;
         // check if there are anomalies in the cone
         Collider[] Hits = Physics.OverlapBox(PhotoCone.bounds.center, PhotoCone.bounds.extents, Quaternion.identity, AnomalyLayer);
+
+        bool hitAnomaly = false;
 
         foreach (var hit in Hits)
         {
             Debug.Log("Hit detected: " + hit.name);
 
             // if anomaly, call for deactivate
-            if (hit.CompareTag("Anomaly"))
+            print(hit.gameObject.layer);
+            print(AnomalyLayer.value);
+            if (((1 << hit.gameObject.layer) & AnomalyLayer.value) != 0)
             {
                 Anomalia a = hit.GetComponent<Anomalia>();
                 if (a != null)
                 {
+                    hitAnomaly = true;
                     StartCoroutine(FlashPhoto(a));
                     Debug.Log("Anomaly deactivated: " + hit.name);
                 }
                 else { Debug.LogWarning("Hit object tagged as Anomaly but no Anomalia component found."); }
             }
+        }
+
+        if (!hitAnomaly)
+        {
+            // play SFX of photo fail
         }
     }
 
@@ -45,8 +71,10 @@ public class CameraAnomaly : MonoBehaviour
     {
         // play sfx
 
-        new WaitForSeconds(1f);
+
+        yield return new WaitForSeconds(1f);
         // blackout screen and call for deactivate
+        blackout.enabled = true;
 
         // teleport player to safe zone
         GameObject closestObj = null;
@@ -61,11 +89,10 @@ public class CameraAnomaly : MonoBehaviour
         transform.position = closestObj.transform.position;
 
         a.Desativar();
-        new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
 
         // return screen to normal
-
-        return null; ;
+        blackout.enabled = false;
 
     }
 }

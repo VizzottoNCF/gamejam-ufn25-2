@@ -23,6 +23,7 @@ public abstract class Anomalia : MonoBehaviour
 
     public virtual void Desativar()
     {
+        print("Eu " + gameObject.name + " fui desativado");
         AnomalySpawner.Instance.DeactivateAnomaly((int)SalaInstancia);
     }
 }

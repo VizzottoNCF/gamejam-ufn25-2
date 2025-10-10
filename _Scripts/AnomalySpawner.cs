@@ -189,8 +189,9 @@ public class AnomalySpawner : MonoBehaviour
         Destroy(basePrefab);
 
         // fills in the room with anomaly prefab
-        SalasInstanciadas[sala] = Instantiate(anomalia);
-        AnomaliasInstanciadas.Add(anomalia);
+        GameObject instancia = Instantiate(anomalia);
+        SalasInstanciadas[sala] = instancia;
+        AnomaliasInstanciadas.Add(instancia); // Adiciona a instância correta
     }
 
     /// <summary>
@@ -201,10 +202,12 @@ public class AnomalySpawner : MonoBehaviour
     {
         // clear anomaly
         GameObject anomalyPrefab = SalasInstanciadas[sala];
+        Destroy(anomalyPrefab);
         AnomaliasInstanciadas.Remove(anomalyPrefab);
 
         // fill in room with base layout
-        SalasInstanciadas[sala] = Instantiate(Salas[sala]);
+        GameObject instancia = Instantiate(Salas[sala]);
+        SalasInstanciadas[sala] = instancia;
         BoostSlider(-0.2f);
     }
     #endregion
