@@ -25,11 +25,25 @@ public class CameraAnomaly : MonoBehaviour
     [Header("Safezones")]
     [SerializeField] private List<Transform> SafeZone;
 
+
+    public AudioClip passos, click, flash,music;
+    private AudioSource audioSource;
+
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(music,20f);
+
+    }
     private void Update()
     {
+
+
         if (CanTakePhoto && Input.GetKeyDown(KeyCode.Mouse1))
         {
             TakePhoto();
+            audioSource.PlayOneShot(click);
         }
 
         if (CameraAmmo > 0)
@@ -42,6 +56,7 @@ public class CameraAnomaly : MonoBehaviour
         // interact to refill
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+           
             Interact();
         }
 
@@ -94,6 +109,9 @@ public class CameraAnomaly : MonoBehaviour
     }
     public void TakePhoto()
     {
+
+       // audioSource.clip = flash;
+        audioSource.PlayOneShot(flash);
         print("FOTOU!");
         CameraAmmo -= 1;
         CanTakePhoto = false;
