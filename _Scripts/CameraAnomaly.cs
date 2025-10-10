@@ -14,6 +14,9 @@ public class CameraAnomaly : MonoBehaviour
     [SerializeField] private float CooldownDefault = 5f;
     [SerializeField] private Collider PhotoCone;
     [SerializeField] private int CameraAmmo = 3;
+    [SerializeField] public GameObject energiaLvl1;
+    [SerializeField] public GameObject energiaLvl2;
+    [SerializeField] public GameObject energiaLvl3;
 
     [Header("Target Config")]
     [SerializeField] private LayerMask AnomalyLayer;
@@ -40,6 +43,31 @@ public class CameraAnomaly : MonoBehaviour
         {
             Interact();
         }
+
+        if (CameraAmmo <= 2)
+        {
+            energiaLvl3.SetActive(false);
+        }
+        else
+        {
+            energiaLvl3.SetActive(true);
+        }
+        if (CameraAmmo <= 1)
+        {
+            energiaLvl2.SetActive(false);
+        }
+        else
+        {
+            energiaLvl2.SetActive(true);
+        }
+        if (CameraAmmo <= 0)
+        {
+            energiaLvl1.SetActive(false);
+        }
+        else
+        {
+            energiaLvl1.SetActive(true);
+        }
     }
 
     public void Interact()
@@ -59,6 +87,9 @@ public class CameraAnomaly : MonoBehaviour
     public void RefillCamera()
     {
         CameraAmmo = 3;
+        energiaLvl3.SetActive(true);
+        energiaLvl2.SetActive(true);
+        energiaLvl1.SetActive(true);
     }
     public void TakePhoto()
     {
@@ -67,7 +98,7 @@ public class CameraAnomaly : MonoBehaviour
         CanTakePhoto = false;
         // check if there are anomalies in the cone
         Collider[] Hits = Physics.OverlapBox(PhotoCone.bounds.center, PhotoCone.bounds.extents, Quaternion.identity, AnomalyLayer);
-
+        
         bool hitAnomaly = false;
 
         foreach (var hit in Hits)
