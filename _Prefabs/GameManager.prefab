@@ -57,6 +57,8 @@ MonoBehaviour:
   - {fileID: 414448435368904162, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
   - {fileID: 2861696892584894209, guid: a1e2988e258ce174eaa785aafa0fdb61, type: 3}
   - {fileID: 7698298416643270613, guid: 6ac0ee7d5c164cf419c32287a879d12a, type: 3}
+  - {fileID: 4113148540411197260, guid: d7cfe78cbb027a241bad1a76af1dbe89, type: 3}
+  - {fileID: 4138334393148107587, guid: 4dd225ce7bf1f944a806f75e3d53d492, type: 3}
   AnomaliasInstanciadas: []
   gameStart: 0
   SpawnTimer: 0
@@ -65,6 +67,7 @@ MonoBehaviour:
   FillRate: 0.01
   DepleteRate: 0.05
   deathCanvas: {fileID: 0}
+  tutorialCanvas: {fileID: 0}
 --- !u!114 &3017758565952222256
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,8 @@ public class CameraAnomaly : MonoBehaviour
         {
             if (!CanTakePhoto && Cooldown < CooldownDefault) { Cooldown += Time.deltaTime; }
             else { Cooldown = 0f; CanTakePhoto = true; }
-        } else { CanTakePhoto = false; }
+        }
+        else { CanTakePhoto = false; }
 
         // interact to refill
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -75,8 +76,8 @@ public class CameraAnomaly : MonoBehaviour
             Debug.Log("Hit detected: " + hit.name);
 
             // if anomaly, call for deactivate
-            print(hit.gameObject.layer);
-            print(AnomalyLayer.value);
+            //print(hit.gameObject.layer);
+            //print(AnomalyLayer.value);
             if (((1 << hit.gameObject.layer) & AnomalyLayer.value) != 0)
             {
                 Anomalia a = hit.GetComponent<Anomalia>();
@@ -104,7 +105,7 @@ public class CameraAnomaly : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // blackout screen and call for deactivate
         blackout.enabled = true;
-        
+
         yield return new WaitForSeconds(0.1f);
 
         // teleport player to safe zone

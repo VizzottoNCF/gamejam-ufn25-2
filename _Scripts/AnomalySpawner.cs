@@ -99,7 +99,7 @@ public class AnomalySpawner : MonoBehaviour
         }
     }
 
-    private void BoostSlider(float val)
+    public void BoostSlider(float val)
     {
         AnomalySlider.value += val;
     }
@@ -249,7 +249,7 @@ public class AnomalySpawner : MonoBehaviour
         // fill in room with base layout
         GameObject instancia = Instantiate(Salas[sala]);
         SalasInstanciadas[sala] = instancia;
-        BoostSlider(-0.2f);
+        BoostSlider(-0.1f);
     }
     #endregion
 }
