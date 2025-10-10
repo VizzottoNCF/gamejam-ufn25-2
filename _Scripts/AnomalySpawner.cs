@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using ElmanGameDevTools.PlayerSystem;
 
 public class AnomalySpawner : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class AnomalySpawner : MonoBehaviour
     [SerializeField] private float DepleteRate = 0.05f;
     private float MaxAnomalyValue = 1f;
 
-    [SerializeField] private Canvas deathCanvas;
+    [SerializeField] private GameObject deathCanvas;
+    [SerializeField] private GameObject tutorialCanvas;
 
     private void Awake()
     {
@@ -44,11 +46,7 @@ public class AnomalySpawner : MonoBehaviour
             SalasInstanciadas.Add(Salas[i]);
             SalasInstanciadas[i] = Instantiate(SalasInstanciadas[i]);
         }
-
-
-        // invoke first anomaly in 5 seconds
-        Invoke("CallAnomaly", 5f);
-        Invoke("GameStart", 5f);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
@@ -105,7 +103,17 @@ public class AnomalySpawner : MonoBehaviour
     {
         AnomalySlider.value += val;
     }
-    private void GameStart() { gameStart = true; }
+
+    /// IS CALLED ONCE YOU READ TUTORIAL
+    public void GameStart()
+    {
+        gameStart = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        tutorialCanvas.SetActive(false);
+
+        Invoke("CallAnomaly", 5f);
+
+    }
 
     public void HandleDeath()
     {
@@ -119,19 +127,32 @@ public class AnomalySpawner : MonoBehaviour
             StartCoroutine(EnableDeathCanvas());
         }
     }
-    
+
     private IEnumerator EnableDeathCanvas()
     {
         yield return new WaitForSeconds(.5f);
         get_conf.issettingactive = true;
         Cursor.lockState = CursorLockMode.None;
-        deathCanvas.enabled = true;
+        deathCanvas.SetActive(true);
         yield return null;
     }
 
     public void LoadScene(string SceneName)
     {
         if (SceneName == "jogar") { SceneName = SceneManager.GetActiveScene().name; }
+
+
+        if (SceneName == SceneManager.GetActiveScene().name)
+        {
+            // reset static variables
+            AnomalySpawner.Instance.AnomaliasInstanciadas.Clear();
+            AnomalySpawner.Instance.SalasInstanciadas.Clear();
+            AnomalySpawner.Instance.AnomalySlider.value = 0f;
+            AnomalySpawner.Instance.gameStart = false;
+            AnomalySpawner.Instance.SpawnTimer = 0f;
+            
+
+        }
         SceneManager.LoadScene(SceneName);
     }
     #endregion

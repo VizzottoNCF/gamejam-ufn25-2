@@ -14,7 +14,9 @@ namespace ElmanGameDevTools.PlayerSystem
         [SerializeField] public Transform config;
         [Header("Movement Settings")]
         public static float speed = 6f;
+        public static float defaultSpeed = 6f;
         public static float runSpeed = 9f;
+        public static float defaultRunSpeed = 9f;
         public float jumpHeight = 1f;
         public float gravity = -9.81f;
         //public float mouseSensitivity = 100f;
@@ -76,7 +78,12 @@ namespace ElmanGameDevTools.PlayerSystem
         /// </summary>
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            morto = false;
+            speed = defaultSpeed;
+            runSpeed = defaultRunSpeed;
+
+
+            //Cursor.lockState = CursorLockMode.Locked;
             originalHeight = controller.height;
             targetHeight = originalHeight;
             defaultYPos = playerCamera.localPosition.y;

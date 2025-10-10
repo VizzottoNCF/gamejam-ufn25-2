@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuPrincipalManager : MonoBehaviour
 {
 
-    [SerializeField]private string nomeDoLevelDoJogo;
+    [SerializeField] private string nomeDoLevelDoJogo;
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelCreditos;
     [SerializeField] private GameObject painelConfig;
@@ -18,7 +18,7 @@ public class MenuPrincipalManager : MonoBehaviour
     public static float mouseSensitivity = 100f;
     private void Start()
     {
-       
+
         mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         slider_sensi.value = mouseSensitivity;
         Cursor.lockState = CursorLockMode.Locked;
@@ -49,7 +49,12 @@ public class MenuPrincipalManager : MonoBehaviour
         Sounds_slider.value = PlayerPrefs.GetFloat("Sounds");
         slider_sensi.value = PlayerPrefs.GetFloat("currentSensitivity");
     }
-
+    public void CloseAll()
+    {
+        if (painelMenuInicial != null) { painelMenuInicial.SetActive(false); }
+        if (painelCreditos != null) { painelCreditos.SetActive(false); }
+        if (painelConfig != null) { painelConfig.SetActive(false); }
+    }
     public void SaveAll()
     {
         PlayerPrefs.SetFloat("Master_Sound", Volume_slider.value);
@@ -63,21 +68,21 @@ public class MenuPrincipalManager : MonoBehaviour
         SceneManager.LoadScene(nomeDoLevelDoJogo);
 
     }
-  //seta o volume
+    //seta o volume
     public void SetVolume()
     {
         float volume = Volume_slider.value;
-        mymixer.SetFloat("Master_Sound", Mathf.Log10(volume)*20);
+        mymixer.SetFloat("Master_Sound", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("Master_Sound", volume);
-        
+
     }
     public void SetMusic()
     {
-        
+
         float Music = Music_slider.value;
         mymixer.SetFloat("Music", Mathf.Log10(Music) * 20);
         PlayerPrefs.SetFloat("Music", Music);
-      
+
     }
     public void SetSound()
     {
@@ -91,7 +96,7 @@ public class MenuPrincipalManager : MonoBehaviour
         Volume_slider.value = PlayerPrefs.GetFloat("Master_Sound");
         Music_slider.value = PlayerPrefs.GetFloat("Music");
         Sounds_slider.value = PlayerPrefs.GetFloat("Sounds");
-        
+
         SetVolume();
         SetMusic();
         SetSound();
@@ -99,36 +104,30 @@ public class MenuPrincipalManager : MonoBehaviour
 
     public void AbriConfig()
     {
-
-        painelMenuInicial.SetActive(false);
-        painelCreditos.SetActive(false);
-        painelConfig.SetActive(true);
+        if (painelMenuInicial != null) { painelMenuInicial.SetActive(false); }
+        if (painelCreditos != null) { painelCreditos.SetActive(false); }
+        if (painelConfig != null) { painelConfig.SetActive(true); }
         
     }
     public void FecharConfig()
     {
-
-        painelMenuInicial.SetActive(true);
-        painelCreditos.SetActive(false);
-        painelConfig.SetActive(false);
-
+        if (painelMenuInicial != null) { painelMenuInicial.SetActive(true); }
+        if (painelCreditos != null) { painelCreditos.SetActive(false); }
+        if (painelConfig != null) { painelConfig.SetActive(false); }
     }
     public void AbrirCreditos()
     {
-
-        painelMenuInicial.SetActive(false);
-        painelCreditos.SetActive(true);
-        painelConfig.SetActive(false);
-
+        if (painelMenuInicial != null) { painelMenuInicial.SetActive(false); }
+        if (painelCreditos != null) { painelCreditos.SetActive(true); }
+        if (painelConfig != null) { painelConfig.SetActive(false); }
     }
 
     public void FecharCreditos()
     {
 
-
-        painelMenuInicial.SetActive(true);
-        painelCreditos.SetActive(false);
-        painelConfig.SetActive(false);
+        if (painelMenuInicial != null) { painelMenuInicial.SetActive(true); }
+        if (painelCreditos != null) { painelCreditos.SetActive(false); }
+        if (painelConfig != null) { painelConfig.SetActive(false); }
     }
 
     public void SairJogo()

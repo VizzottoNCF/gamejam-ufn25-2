@@ -5,6 +5,13 @@ public class get_conf : MonoBehaviour
 {
     public GameObject setting;
     public static bool issettingactive;
+    private GameObject MenuManager;
+
+    private void Start()
+    {
+        issettingactive = false;
+        MenuManager = GameObject.FindAnyObjectByType<MenuPrincipalManager>().gameObject;
+    }
 
     void Update()
     {
@@ -18,6 +25,7 @@ public class get_conf : MonoBehaviour
             else 
             {
                 Resume();
+                MenuManager.GetComponent<MenuPrincipalManager>().CloseAll();
             }
         }
     }

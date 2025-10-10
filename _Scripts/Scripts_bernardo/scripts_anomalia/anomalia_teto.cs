@@ -13,15 +13,8 @@ public class anomalia_teto : MonoBehaviour
     [SerializeField] private Collider colliderdmg;
     [SerializeField] private GameObject morte_menu;
 
-    //Transform anomalia;
-    bool ataca = false;
-    private static Rigidbody rb;
-    float speed = 10f;
-    // Update is called once per frame
-
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -46,8 +39,6 @@ public class anomalia_teto : MonoBehaviour
         if (other.CompareTag("Player")){ 
             //executar paralizai do player
             PlayerController.morreu(transform);
-
-            ataca = true;
            // morte_menu.SetActive(true);
         }
 

@@ -19,4 +19,9 @@ public class CameraSway : MonoBehaviour
             { transform.DORotate(new Vector3(rot.x, rot.y-angle, rot.z), timeToSway).SetEase(Ease.InOutSine).OnComplete(Sway); });
     }
 
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
+
 }

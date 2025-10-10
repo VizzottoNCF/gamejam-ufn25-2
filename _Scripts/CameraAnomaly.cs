@@ -17,13 +17,14 @@ public class CameraAnomaly : MonoBehaviour
 
     [Header("Target Config")]
     [SerializeField] private LayerMask AnomalyLayer;
+    [SerializeField] private LayerMask RefillLayer;
 
     [Header("Safezones")]
     [SerializeField] private List<Transform> SafeZone;
 
     private void Update()
     {
-        if (CanTakePhoto && Input.GetKeyDown(KeyCode.Mouse0))
+        if (CanTakePhoto && Input.GetKeyDown(KeyCode.Mouse1))
         {
             TakePhoto();
         }
@@ -33,6 +34,26 @@ public class CameraAnomaly : MonoBehaviour
             if (!CanTakePhoto && Cooldown < CooldownDefault) { Cooldown += Time.deltaTime; }
             else { Cooldown = 0f; CanTakePhoto = true; }
         } else { CanTakePhoto = false; }
+
+        // interact to refill
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Interact();
+        }
+    }
+
+    public void Interact()
+    {
+        Collider[] Hits = Physics.OverlapBox(PhotoCone.bounds.center, PhotoCone.bounds.extents, Quaternion.identity, RefillLayer);
+
+        foreach (var hit in Hits)
+        {
+            Debug.Log("Hit detected: " + hit.name);
+            if (((1 << hit.gameObject.layer) & RefillLayer.value) != 0)
+            {
+                RefillCamera();
+            }
+        }
     }
 
     public void RefillCamera()
@@ -42,6 +63,7 @@ public class CameraAnomaly : MonoBehaviour
     public void TakePhoto()
     {
         print("FOTOU!");
+        CameraAmmo -= 1;
         CanTakePhoto = false;
         // check if there are anomalies in the cone
         Collider[] Hits = Physics.OverlapBox(PhotoCone.bounds.center, PhotoCone.bounds.extents, Quaternion.identity, AnomalyLayer);

@@ -676,6 +676,9 @@ MonoBehaviour:
   AnomalyLayer:
     serializedVersion: 2
     m_Bits: 64
+  RefillLayer:
+    serializedVersion: 2
+    m_Bits: 128
   SafeZone: []
 --- !u!1 &3008871010848723816
 GameObject:
