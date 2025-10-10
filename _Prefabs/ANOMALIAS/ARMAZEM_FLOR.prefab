@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnomPrefab: {fileID: 4113148540411197260}
   Name: Amor
-  Weight: 1
+  Weight: 2
   SalaInstancia: 1
 --- !u!65 &8176042641978278002
 BoxCollider:

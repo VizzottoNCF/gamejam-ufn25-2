@@ -58,7 +58,7 @@ public class AnomalySpawner : MonoBehaviour
         {
             // spawn timer loop
             // timer takes longer depending on the amount of anomalies present
-            if (SpawnTimer < (SpawnTimerDefault + AnomaliasInstanciadas.Count * 10)) { SpawnTimer += Time.deltaTime; }
+            if (SpawnTimer < (SpawnTimerDefault + AnomaliasInstanciadas.Count * 5)) { SpawnTimer += Time.deltaTime; }
             else
             {
                 SpawnTimer = 0f;

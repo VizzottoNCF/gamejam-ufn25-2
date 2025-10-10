@@ -54,18 +54,22 @@ MonoBehaviour:
   - {fileID: 8927184192003733161, guid: 2e2e6e79680494f45aecbdd4848ea52d, type: 3}
   SalasInstanciadas: []
   AnomaliaPrefabs:
+  - {fileID: 4113148540411197260, guid: d7cfe78cbb027a241bad1a76af1dbe89, type: 3}
+  - {fileID: 6190254544079987903, guid: 264f9b7afee98254990b423188e0e7b2, type: 3}
+  - {fileID: 2902134808058214164, guid: 6b5b14c2d57233845bd262adf6936284, type: 3}
+  - {fileID: 3103468290153808371, guid: 01c1ca208c097bf4091a872c83714228, type: 3}
+  - {fileID: 4138334393148107587, guid: 4dd225ce7bf1f944a806f75e3d53d492, type: 3}
+  - {fileID: 414448435368904162, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
   - {fileID: 414448435368904162, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
   - {fileID: 2861696892584894209, guid: a1e2988e258ce174eaa785aafa0fdb61, type: 3}
   - {fileID: 7698298416643270613, guid: 6ac0ee7d5c164cf419c32287a879d12a, type: 3}
-  - {fileID: 4113148540411197260, guid: d7cfe78cbb027a241bad1a76af1dbe89, type: 3}
-  - {fileID: 4138334393148107587, guid: 4dd225ce7bf1f944a806f75e3d53d492, type: 3}
-  - {fileID: 2902134808058214164, guid: 6b5b14c2d57233845bd262adf6936284, type: 3}
+  - {fileID: 6968067585181088345, guid: bf4bfe6fbad32c140b4cee2dea9bd7af, type: 3}
   AnomaliasInstanciadas: []
   gameStart: 0
   SpawnTimer: 0
-  SpawnTimerDefault: 15
+  SpawnTimerDefault: 10
   AnomalySlider: {fileID: 0}
-  FillRate: 0.01
+  FillRate: 0.015
   DepleteRate: 0.05
   deathCanvas: {fileID: 0}
   tutorialCanvas: {fileID: 0}

@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnomPrefab: {fileID: 4138334393148107587}
   Name: Vida
-  Weight: 1
+  Weight: 2
   SalaInstancia: 2
 --- !u!65 &9161742435843234481
 BoxCollider:
@@ -74,7 +74,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

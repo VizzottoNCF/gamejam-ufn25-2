@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnomPrefab: {fileID: 7698298416643270613}
   Name: Capy
-  Weight: 1
+  Weight: 2
   SalaInstancia: 0
 --- !u!1001 &5623835957691232462
 PrefabInstance:
