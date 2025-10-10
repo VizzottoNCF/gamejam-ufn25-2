@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CameraAnomaly : MonoBehaviour
 {
     [Header("Canvas Variables")]
-    [SerializeField] private Image blackout;
+    [SerializeField] private GameObject blackout;
 
     [Header("Camera Config")]
     [SerializeField] private bool CanTakePhoto = true;
@@ -38,8 +38,6 @@ public class CameraAnomaly : MonoBehaviour
     }
     private void Update()
     {
-
-
         if (CanTakePhoto && Input.GetKeyDown(KeyCode.Mouse1))
         {
             TakePhoto();
@@ -110,7 +108,7 @@ public class CameraAnomaly : MonoBehaviour
     public void TakePhoto()
     {
 
-       // audioSource.clip = flash;
+       // flash
         audioSource.PlayOneShot(flash);
         print("FOTOU!");
         CameraAmmo -= 1;
@@ -139,23 +137,18 @@ public class CameraAnomaly : MonoBehaviour
                 else { Debug.LogWarning("Hit object tagged as Anomaly but no Anomalia component found."); }
             }
         }
-
-        if (!hitAnomaly)
-        {
-            // play SFX of photo fail
-        }
     }
 
     private IEnumerator FlashPhoto(Anomalia a)
     {
-        // play sfx
-
-
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         // blackout screen and call for deactivate
-        blackout.enabled = true;
+        blackout.GetComponent<Animator>().SetTrigger("photo");
 
         yield return new WaitForSeconds(0.1f);
+
+        blackout.GetComponent<Animator>().SetBool("done", true);
+
 
         // teleport player to safe zone
         GameObject closestObj = null;
@@ -170,10 +163,9 @@ public class CameraAnomaly : MonoBehaviour
         transform.position = closestObj.transform.position;
 
         a.Desativar();
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(2f);
 
-        // return screen to normal
-        blackout.enabled = false;
+        blackout.GetComponent<Animator>().SetBool("done", false);
 
     }
 }

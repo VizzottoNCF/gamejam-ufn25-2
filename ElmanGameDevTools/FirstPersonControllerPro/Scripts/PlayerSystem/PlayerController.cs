@@ -1,7 +1,5 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.ShaderData;
 
 namespace ElmanGameDevTools.PlayerSystem
 {

@@ -69,7 +69,7 @@ MonoBehaviour:
   SpawnTimer: 0
   SpawnTimerDefault: 10
   AnomalySlider: {fileID: 0}
-  FillRate: 0.015
+  FillRate: 0.005
   DepleteRate: 0.05
   deathCanvas: {fileID: 0}
   tutorialCanvas: {fileID: 0}

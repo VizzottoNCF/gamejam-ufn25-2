@@ -261,7 +261,6 @@ GameObject:
   m_Component:
   - component: {fileID: 462481570}
   - component: {fileID: 462481569}
-  - component: {fileID: 462481571}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -281,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f44053f866ef14595b6b280a3c5da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDoLevelDoJogo: scene_bernard_mp
+  nomeDoLevelDoJogo: FabricaRafa
   painelMenuInicial: {fileID: 1070839325}
   painelCreditos: {fileID: 1132665429}
   painelConfig: {fileID: 739006622}
@@ -289,7 +288,7 @@ MonoBehaviour:
   Volume_slider: {fileID: 749247507}
   Music_slider: {fileID: 985898138}
   Sounds_slider: {fileID: 679169978}
-  slider_sensi: {fileID: 0}
+  slider_sensi: {fileID: 1854086565}
 --- !u!4 &462481570
 Transform:
   m_ObjectHideFlags: 0
@@ -305,26 +304,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &462481571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462481568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d532ced2fa60a478ad2adc54df3430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSounds:
-  - soundName: music_test
-    clip: {fileID: 8300000, guid: 6ceacba491dfb3746a6fe75db5c8d506, type: 3}
-  sfxSounds:
-  - soundName: sfx_teste
-    clip: {fileID: 8300000, guid: 6ceacba491dfb3746a6fe75db5c8d506, type: 3}
-  musicSource: {fileID: 2001792822}
-  sfxSource: {fileID: 2001792822}
 --- !u!1 &663446444
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +316,6 @@ GameObject:
   - component: {fileID: 663446446}
   - component: {fileID: 663446445}
   - component: {fileID: 663446448}
-  - component: {fileID: 663446450}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -463,18 +441,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &663446450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663446444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4f2d4e95f745e4f98480f3fec61f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &679169978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6244339864502210623, guid: 0625a77b77e29b442b5b0c74a8abef81, type: 3}
@@ -1460,6 +1426,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791691520}
   m_CullTransparentMesh: 1
+--- !u!114 &1854086565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 473451931181950291, guid: 0625a77b77e29b442b5b0c74a8abef81, type: 3}
+  m_PrefabInstance: {fileID: 2161985269257933536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1988743840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,7 +1808,7 @@ PrefabInstance:
     - target: {fileID: 473451931181950291, guid: 0625a77b77e29b442b5b0c74a8abef81, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 663446450}
+      objectReference: {fileID: 0}
     - target: {fileID: 660265611077629509, guid: 0625a77b77e29b442b5b0c74a8abef81, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -488,7 +488,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ff4f81edb6c30d345a7ec35768aa0d51, type: 2}
-  m_CullingMode: 2
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcf4527c55b9cb438d03d88e82d7191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackout: {fileID: 1913189494232977726}
+  blackout: {fileID: 1327616711777925545}
   CanTakePhoto: 1
   Cooldown: 0
   CooldownDefault: 5
