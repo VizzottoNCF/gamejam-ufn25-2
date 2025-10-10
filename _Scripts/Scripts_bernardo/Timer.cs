@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
@@ -7,19 +8,17 @@ public class Timer : MonoBehaviour
     [SerializeField] float remainingTime;
     [SerializeField] int minutos;
     [SerializeField] int seconds;
+    public static bool started = false;
+    private void Start()
+    {
+        started = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (remainingTime > 0)
+        if (started)
         {
-
-            remainingTime -= Time.deltaTime;
-
-        }
-        else if (remainingTime < 0)
-        {
-            remainingTime = 0;
-
+            remainingTime += Time.deltaTime;
         }
        
         int minutos = Mathf.FloorToInt(remainingTime / 60);

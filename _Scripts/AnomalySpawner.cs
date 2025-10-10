@@ -108,6 +108,7 @@ public class AnomalySpawner : MonoBehaviour
     public void GameStart()
     {
         gameStart = true;
+        Timer.started = true;
         Cursor.lockState = CursorLockMode.Locked;
         tutorialCanvas.SetActive(false);
 

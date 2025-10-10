@@ -21,7 +21,7 @@ public class MenuPrincipalManager : MonoBehaviour
 
         mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         slider_sensi.value = mouseSensitivity;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
 
         LoadAll();

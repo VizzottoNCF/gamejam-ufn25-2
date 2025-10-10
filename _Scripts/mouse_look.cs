@@ -15,7 +15,7 @@ public  class mouse_look : MonoBehaviour
     {
         mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         slider.value = mouseSensitivity / 10;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
