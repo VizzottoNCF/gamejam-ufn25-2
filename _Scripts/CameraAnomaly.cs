@@ -13,6 +13,7 @@ public class CameraAnomaly : MonoBehaviour
     [SerializeField] private float Cooldown = 0f;
     [SerializeField] private float CooldownDefault = 5f;
     [SerializeField] private Collider PhotoCone;
+    [SerializeField] private int CameraAmmo = 3;
 
     [Header("Target Config")]
     [SerializeField] private LayerMask AnomalyLayer;
@@ -27,11 +28,17 @@ public class CameraAnomaly : MonoBehaviour
             TakePhoto();
         }
 
-        if (!CanTakePhoto && Cooldown < CooldownDefault) { Cooldown += Time.deltaTime; }
-        else { Cooldown = 0f; CanTakePhoto = true; }
+        if (CameraAmmo > 0)
+        {
+            if (!CanTakePhoto && Cooldown < CooldownDefault) { Cooldown += Time.deltaTime; }
+            else { Cooldown = 0f; CanTakePhoto = true; }
+        } else { CanTakePhoto = false; }
     }
 
-
+    public void RefillCamera()
+    {
+        CameraAmmo = 3;
+    }
     public void TakePhoto()
     {
         print("FOTOU!");
@@ -75,6 +82,8 @@ public class CameraAnomaly : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // blackout screen and call for deactivate
         blackout.enabled = true;
+        
+        yield return new WaitForSeconds(0.1f);
 
         // teleport player to safe zone
         GameObject closestObj = null;
@@ -89,7 +98,7 @@ public class CameraAnomaly : MonoBehaviour
         transform.position = closestObj.transform.position;
 
         a.Desativar();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
 
         // return screen to normal
         blackout.enabled = false;

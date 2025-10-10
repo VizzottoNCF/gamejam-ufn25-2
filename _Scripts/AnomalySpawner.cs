@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class AnomalySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> AnomaliasInstanciadas;
 
     [Header("Spawner Config")]
-    [SerializeField] private bool gameStart = false;
+    [SerializeField] public bool gameStart = false;
     [SerializeField] private float SpawnTimer = 0f;
     [SerializeField] private float SpawnTimerDefault;
 
@@ -26,6 +27,9 @@ public class AnomalySpawner : MonoBehaviour
     [SerializeField] private float FillRate = 0.01f;
     [SerializeField] private float DepleteRate = 0.05f;
     private float MaxAnomalyValue = 1f;
+
+    [SerializeField] private Canvas deathCanvas;
+
     private void Awake()
     {
         // singleton
@@ -44,12 +48,12 @@ public class AnomalySpawner : MonoBehaviour
 
         // invoke first anomaly in 5 seconds
         Invoke("CallAnomaly", 5f);
+        Invoke("GameStart", 5f);
     }
 
     void Update()
     {
-        /// quando que eu preciso chamar o spawner?
-        /// timer + velocidade muda quando ja tem uma instancia? + 0 intancia = 5 seg p anomalia?
+        if (get_conf.issettingactive) { return; } // pause game if settings menu is active
 
         // Once first anomaly has already been instanciated
         if (gameStart && AnomaliasInstanciadas.Count < 4)
@@ -101,16 +105,35 @@ public class AnomalySpawner : MonoBehaviour
     {
         AnomalySlider.value += val;
     }
+    private void GameStart() { gameStart = true; }
 
-    private void HandleDeath()
+    public void HandleDeath()
     {
-        if (!gameStart)
+        if (!gameStart) { return; } // repeat call
+        else
         {
+            gameStart = false;
+            Debug.Log("Player Died");
 
+            // death screen
+            StartCoroutine(EnableDeathCanvas());
         }
     }
+    
+    private IEnumerator EnableDeathCanvas()
+    {
+        yield return new WaitForSeconds(.5f);
+        get_conf.issettingactive = true;
+        Cursor.lockState = CursorLockMode.None;
+        deathCanvas.enabled = true;
+        yield return null;
+    }
 
-
+    public void LoadScene(string SceneName)
+    {
+        if (SceneName == "jogar") { SceneName = SceneManager.GetActiveScene().name; }
+        SceneManager.LoadScene(SceneName);
+    }
     #endregion
 
     #region Spawner de Anomalia
@@ -165,9 +188,6 @@ public class AnomalySpawner : MonoBehaviour
 
     public void CallAnomaly()
     {
-        // first use case, starts the anomaly spawn timer and slider interaction
-        if (!gameStart) { gameStart = true; }
-
         SelectRandomAnomaly();
     }
 

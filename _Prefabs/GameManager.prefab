@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8052355273855517243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5180614077579923159}
+  - component: {fileID: 2779875651770020830}
+  - component: {fileID: 3017758565952222256}
+  - component: {fileID: 5456756089690442986}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5180614077579923159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052355273855517243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 77.27254, y: -12.165251, z: 2.210228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2779875651770020830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052355273855517243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6084fd8bb4d8b74da98eb5d790db64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Salas:
+  - {fileID: 1396666189288897110, guid: feeb9a41abd06004099ca148682d371e, type: 3}
+  - {fileID: 6537969705896522341, guid: 36dae8829f3a4fb438702532183cac33, type: 3}
+  - {fileID: 2692045529006391895, guid: 15a38155e380f554bab65eab4d27e92b, type: 3}
+  - {fileID: 8927184192003733161, guid: 2e2e6e79680494f45aecbdd4848ea52d, type: 3}
+  SalasInstanciadas: []
+  AnomaliaPrefabs:
+  - {fileID: 414448435368904162, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
+  - {fileID: 2861696892584894209, guid: a1e2988e258ce174eaa785aafa0fdb61, type: 3}
+  - {fileID: 7698298416643270613, guid: 6ac0ee7d5c164cf419c32287a879d12a, type: 3}
+  AnomaliasInstanciadas: []
+  gameStart: 0
+  SpawnTimer: 0
+  SpawnTimerDefault: 15
+  AnomalySlider: {fileID: 0}
+  FillRate: 0.01
+  DepleteRate: 0.05
+  deathCanvas: {fileID: 0}
+--- !u!114 &3017758565952222256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052355273855517243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1dd95c4ed235f4d85ec2a51afc1a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5456756089690442986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052355273855517243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66806b914dede40b24e984a0974550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setting: {fileID: 0}

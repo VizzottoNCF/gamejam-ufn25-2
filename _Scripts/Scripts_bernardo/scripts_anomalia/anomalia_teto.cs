@@ -8,11 +8,10 @@ using UnityEngine.AI;
 public class anomalia_teto : MonoBehaviour
 {
     [SerializeField] private static Collider colliderkill;
-    public Transform killer;
-    [SerializeField]  GameObject anomalia;
-    [SerializeField]  GameObject player;
+    [SerializeField] private GameObject anomalia;
+    [SerializeField] private GameObject player;
     [SerializeField] private Collider colliderdmg;
-    [SerializeField] GameObject morte_menu;
+    [SerializeField] private GameObject morte_menu;
 
     //Transform anomalia;
     bool ataca = false;
@@ -23,29 +22,20 @@ public class anomalia_teto : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     
 
     void Update()
     {
-        
+        //if (ataca == true) {
+        //    anomalia.transform.position = Vector3.MoveTowards(anomalia.transform.position,  player.transform.position, speed * Time.deltaTime);
 
+        //    new WaitForSeconds(2);
+        //    morte_menu.SetActive(true);
 
-        if (ataca == true) {
-
-            // new WaitForSeconds(1);
-            // rb.MovePosition(transform.position*40);
-            
-            anomalia.transform.position = Vector3.MoveTowards(anomalia.transform.position,  player.transform.position, speed * Time.deltaTime);
-
-            new WaitForSeconds(2);
-            morte_menu.SetActive(true);
-
-        }
-
-       
-
-
+        //}
            
     }
 
@@ -54,16 +44,10 @@ public class anomalia_teto : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player")){ 
-        
-          //  PlayerController.morreu(killer);
-            PlayerController Player = other.GetComponent<PlayerController>();
             //executar paralizai do player
-            PlayerController.morreu(killer);
+            PlayerController.morreu(transform);
 
             ataca = true;
-            // killer.transform.position = player.transform.position;
-
-            //anomalia.transform.position = Vector3.MoveTowards(player.transform.position, anomalia.transform.position, speed  * Time.deltaTime);
            // morte_menu.SetActive(true);
         }
 

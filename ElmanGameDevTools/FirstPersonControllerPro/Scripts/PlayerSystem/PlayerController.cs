@@ -422,9 +422,10 @@ namespace ElmanGameDevTools.PlayerSystem
 
         public static void morreu(Transform killer)
         {
-             morto = true;
-             runSpeed = 0;
-             speed = 0;
+            morto = true;
+            AnomalySpawner.Instance.HandleDeath();
+            runSpeed = 0;
+            speed = 0;
             //Camera.main.transform.LookAt(killer, Vector3.up*260);
             if (lock1 == false) {
                     Camera.main.transform.LookAt(killer);
