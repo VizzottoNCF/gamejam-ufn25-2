@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4532215139828380422}
   - component: {fileID: 6031742143987992216}
   - component: {fileID: 3320015479095660731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GERADOR_GATO
   m_TagString: Untagged
   m_Icon: {fileID: 0}

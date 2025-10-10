@@ -1345,7 +1345,7 @@ GameObject:
   - component: {fileID: 982505365798111051}
   - component: {fileID: 7417075986508705000}
   - component: {fileID: -2412150527292842266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ARMAZEM_JANELA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

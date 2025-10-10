@@ -6594,11 +6594,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2137195129188807160, guid: 4f019145598ea474b899ca25a03acd09, type: 3}
   m_PrefabInstance: {fileID: 1421294316}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1338338939 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1327616711777925545, guid: 691d201409042b143af4574240386e30, type: 3}
-  m_PrefabInstance: {fileID: 1418476095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1340726937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1453485022173259434, guid: eb4b38db67a56dc469a2c2aafcc36add, type: 3}
@@ -7193,10 +7188,6 @@ PrefabInstance:
       propertyPath: 'SafeZone.Array.data[3]'
       value: 
       objectReference: {fileID: 857525317}
-    - target: {fileID: 2296921111584844653, guid: 691d201409042b143af4574240386e30, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2359111276709748182, guid: 691d201409042b143af4574240386e30, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7312,9 +7303,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4566343684708877230, guid: 691d201409042b143af4574240386e30, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086638433}
-    - targetCorrespondingSourceObject: {fileID: 1327616711777925545, guid: 691d201409042b143af4574240386e30, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1432927519}
   m_SourcePrefab: {fileID: 100100000, guid: 691d201409042b143af4574240386e30, type: 3}
 --- !u!1001 &1421294316
 PrefabInstance:
@@ -7382,23 +7370,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1554161176115921225, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
   m_PrefabInstance: {fileID: 1341758875}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &1432927519
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338338939}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 15976247a31e6c046bdf4251904ab760, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 15976247a31e6c046bdf4251904ab760, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1001 &1563140924
 PrefabInstance:
   m_ObjectHideFlags: 0
