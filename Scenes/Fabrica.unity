@@ -6512,6 +6512,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1347080485318156025, guid: 691d201409042b143af4574240386e30, type: 3}
+      propertyPath: SafeZone.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347080485318156025, guid: 691d201409042b143af4574240386e30, type: 3}
+      propertyPath: 'SafeZone.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1747755930}
+    - target: {fileID: 1347080485318156025, guid: 691d201409042b143af4574240386e30, type: 3}
+      propertyPath: 'SafeZone.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2326904}
+    - target: {fileID: 1347080485318156025, guid: 691d201409042b143af4574240386e30, type: 3}
+      propertyPath: 'SafeZone.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1945325341}
+    - target: {fileID: 1347080485318156025, guid: 691d201409042b143af4574240386e30, type: 3}
+      propertyPath: 'SafeZone.Array.data[3]'
+      value: 
+      objectReference: {fileID: 857525317}
     - target: {fileID: 2359111276709748182, guid: 691d201409042b143af4574240386e30, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8865,7 +8885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 414448435368904162, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5481421547684356624, guid: 676ce23d9ee2ed64a9620775455b5af0, type: 3}
       propertyPath: m_LocalPosition.z
